@@ -1,0 +1,79 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.descriptionSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin-top: var(--space-2);
+  margin-bottom: var(--space-3);
+  padding: var(--space-3) 0;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.activityStatusRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-top: 0.15rem;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+.body {
+  margin: 0;
+  white-space: pre-wrap;
+  font-size: var(--text-size-description);
+  line-height: 1.55;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.footerGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+}
+
+@media (min-width: 520px) {
+  .footerGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.muted {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.noResolution {
+  margin: 0 0 var(--space-2);
+  color: #c47a6a;
+  font-size: 0.85rem;
+}

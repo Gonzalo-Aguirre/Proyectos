@@ -1,0 +1,22 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.actividad,
+.resuelto {
+  background: rgba(47, 158, 107, 0.15);
+  color: var(--border-actividad);
+}
+
+.abierto {
+  background: var(--color-danger-soft);
+  color: var(--color-danger);
+}

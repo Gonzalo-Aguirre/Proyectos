@@ -1,0 +1,15 @@
+.root {
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  padding: 0.2rem 0.35rem;
+  opacity: 0.45;
+  transition: opacity 0.15s ease, color 0.15s ease;
+}
+
+.root:hover,
+.root:focus-visible {
+  opacity: 0.9;
+  color: var(--text);
+}

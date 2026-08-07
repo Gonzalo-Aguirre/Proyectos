@@ -1,0 +1,10 @@
+.root {
+  margin: 0.35rem 0 0.15rem;
+  color: var(--text-muted);
+  font-size: var(--text-size-description);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

@@ -1,0 +1,25 @@
+.root {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  border: none;
+  border-radius: 999px;
+  background: var(--color-accent);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  box-shadow: var(--shadow-md);
+  z-index: 40;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.root:hover {
+  transform: scale(1.05);
+}
+
+.root:focus-visible {
+  outline: 3px solid var(--color-accent-soft);
+  outline-offset: 2px;
+}

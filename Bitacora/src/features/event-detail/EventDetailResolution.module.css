@@ -1,0 +1,30 @@
+.root {
+  border: 1px solid rgba(47, 158, 107, 0.5);
+  background: linear-gradient(
+    180deg,
+    rgba(47, 158, 107, 0.22) 0%,
+    rgba(47, 158, 107, 0.12) 100%
+  );
+  border-radius: var(--radius-md);
+  padding: 0.7rem 0.85rem;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.08),
+    0 4px 12px rgba(47, 158, 107, 0.16),
+    0 1px 3px rgba(0, 0, 0, 0.22);
+}
+
+.label {
+  margin: 0 0 0.25rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--border-actividad);
+}
+
+.copy {
+  margin: 0;
+  white-space: pre-wrap;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}

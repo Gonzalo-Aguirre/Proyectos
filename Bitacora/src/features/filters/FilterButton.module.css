@@ -1,0 +1,19 @@
+.root {
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  color: var(--text-muted);
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.root:hover {
+  border-color: var(--color-accent);
+  color: var(--text);
+}
+
+.rootActive {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #fff;
+}

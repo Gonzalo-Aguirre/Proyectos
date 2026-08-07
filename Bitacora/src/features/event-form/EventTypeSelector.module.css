@@ -1,0 +1,32 @@
+.root {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.45rem;
+}
+
+.option {
+  border: 1px solid var(--border);
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  padding: 0.45rem 0.6rem;
+  text-align: left;
+}
+
+.optionActive {
+  border-color: var(--color-accent);
+  background: var(--color-accent-soft);
+}
+
+.label {
+  display: block;
+  font-weight: 650;
+  font-size: 0.85rem;
+  margin-bottom: 0.1rem;
+}
+
+.hint {
+  display: block;
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  line-height: 1.25;
+}

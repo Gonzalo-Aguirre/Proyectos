@@ -1,0 +1,19 @@
+.actividadTerminada {
+  border-left: 4px solid var(--border-actividad);
+}
+
+.actividadEnProgreso {
+  border-left: 4px solid #0ea5e9;
+}
+
+.actividadPorIniciar {
+  border-left: 4px solid #64748b;
+}
+
+.problemaAbierto {
+  border-left: 4px solid var(--border-problema-abierto);
+}
+
+.problemaResuelto {
+  border-left: 4px solid var(--border-problema-resuelto);
+}

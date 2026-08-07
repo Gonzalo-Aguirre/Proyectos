@@ -1,0 +1,19 @@
+.root {
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  text-align: center;
+  color: var(--text-muted);
+  background: var(--bg-elevated);
+}
+
+.title {
+  margin: 0 0 var(--space-2);
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.copy {
+  margin: 0;
+  font-size: 0.92rem;
+}

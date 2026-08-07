@@ -1,0 +1,39 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.label {
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.control {
+  border: 1px solid var(--border);
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  padding: 0.4rem 0.55rem;
+  outline: none;
+  font-size: 0.88rem;
+}
+
+.control:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-accent-soft);
+}
+
+.textarea {
+  min-height: 58px;
+  resize: vertical;
+}
+
+.error {
+  color: #b91c1c;
+  font-size: 0.72rem;
+}
+
+.hint {
+  color: var(--text-muted);
+  font-size: 0.68rem;
+}
