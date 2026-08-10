@@ -1,0 +1,35 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.1rem 0.35rem;
+  border-radius: 999px;
+  font-size: 0.58rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.alta {
+  background: color-mix(in srgb, var(--border-actividad-alerta) 20%, transparent);
+  color: var(--border-actividad-alerta);
+  border: 1px solid color-mix(in srgb, var(--border-actividad-alerta) 45%, transparent);
+}
+
+.media {
+  background: color-mix(in srgb, var(--border-actividad-aviso) 18%, transparent);
+  color: #c4a00a;
+  border: 1px solid color-mix(in srgb, var(--border-actividad-aviso) 45%, transparent);
+}
+
+.baja {
+  background: color-mix(in srgb, var(--border-reto) 16%, transparent);
+  color: var(--border-reto);
+  border: 1px solid color-mix(in srgb, var(--border-reto) 40%, transparent);
+}
+
+@media (prefers-color-scheme: light) {
+  .media {
+    color: #8a7008;
+  }
+}

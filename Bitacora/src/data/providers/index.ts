@@ -1,21 +1,25 @@
 import { createMockAuthProvider } from "./mock-auth";
 import {
   createMockEnvironmentProvider,
+  createMockEventItemProvider,
   createMockEventProvider,
 } from "./mock-provider";
 import { createSupabaseAuthProvider } from "./supabase-auth";
 import {
   createSupabaseEnvironmentProvider,
+  createSupabaseEventItemProvider,
   createSupabaseEventProvider,
 } from "./supabase-provider";
 import type {
   AuthRepository,
   DataProviderName,
   EnvironmentRepository,
+  EventItemRepository,
   EventRepository,
 } from "./types";
 
 let events: EventRepository | null = null;
+let eventItems: EventItemRepository | null = null;
 let environments: EnvironmentRepository | null = null;
 let auth: AuthRepository | null = null;
 
@@ -35,6 +39,15 @@ export function getEventRepository(): EventRepository {
       ? createSupabaseEventProvider()
       : createMockEventProvider();
   return events;
+}
+
+export function getEventItemRepository(): EventItemRepository {
+  if (eventItems) return eventItems;
+  eventItems =
+    resolveProviderName() === "supabase"
+      ? createSupabaseEventItemProvider()
+      : createMockEventItemProvider();
+  return eventItems;
 }
 
 export function getEnvironmentRepository(): EnvironmentRepository {
@@ -59,5 +72,6 @@ export type {
   AuthRepository,
   DataProviderName,
   EnvironmentRepository,
+  EventItemRepository,
   EventRepository,
 };

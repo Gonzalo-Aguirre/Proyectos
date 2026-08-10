@@ -23,6 +23,13 @@
   font-size: 0.95rem;
 }
 
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-shrink: 0;
+}
+
 .backLink {
   text-decoration: none;
   border: 1px solid var(--border);

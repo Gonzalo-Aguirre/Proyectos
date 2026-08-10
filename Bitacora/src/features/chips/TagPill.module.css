@@ -1,10 +1,25 @@
 .root {
   display: inline-flex;
   align-items: center;
-  padding: 0.18rem 0.5rem;
+  max-width: 100%;
+  min-width: 0;
+  padding: 0.1rem 0.4rem;
   border-radius: 999px;
   background: var(--color-accent-soft);
   color: var(--color-accent);
-  font-size: 0.75rem;
+  font-size: 0.68rem;
   font-weight: 600;
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.link {
+  text-decoration: none;
+  border: 1px solid color-mix(in srgb, var(--color-accent) 35%, transparent);
+}
+
+.link:hover {
+  text-decoration: underline;
 }

@@ -1,10 +1,16 @@
 import type { UserProfile } from "@/types/auth";
 import type {
   CreateEnvironmentInput,
+  CreateInviteInput,
+  EnvironmentInvite,
+  EnvironmentMember,
+  UpdateEnvironmentInput,
   WorkEnvironment,
 } from "@/types/environment";
 import type {
   CreateEventInput,
+  CreateEventItemInput,
+  EventItem,
   TeamEvent,
   UpdateEventInput,
 } from "@/types/event";
@@ -18,11 +24,26 @@ export interface EventRepository {
   remove(id: string): Promise<void>;
 }
 
+export interface EventItemRepository {
+  listByEvent(eventId: string): Promise<EventItem[]>;
+  listByEvents(eventIds: string[]): Promise<EventItem[]>;
+  create(input: CreateEventItemInput): Promise<EventItem>;
+}
+
 export interface EnvironmentRepository {
-  list(): Promise<WorkEnvironment[]>;
-  getById(id: string): Promise<WorkEnvironment | null>;
+  list(userId: string): Promise<WorkEnvironment[]>;
+  getById(id: string, userId: string): Promise<WorkEnvironment | null>;
   create(input: CreateEnvironmentInput): Promise<WorkEnvironment>;
+  update(id: string, input: UpdateEnvironmentInput): Promise<WorkEnvironment>;
   remove(id: string): Promise<void>;
+  listMembers(environmentId: string): Promise<EnvironmentMember[]>;
+  listPendingInvites(environmentId: string): Promise<EnvironmentInvite[]>;
+  listMyPendingInvites(email: string): Promise<EnvironmentInvite[]>;
+  invite(input: CreateInviteInput): Promise<EnvironmentInvite>;
+  acceptInvite(inviteId: string, userId: string): Promise<void>;
+  revokeInvite(inviteId: string): Promise<void>;
+  removeMember(environmentId: string, userId: string): Promise<void>;
+  leave(environmentId: string, userId: string): Promise<void>;
 }
 
 export interface SignUpInput {

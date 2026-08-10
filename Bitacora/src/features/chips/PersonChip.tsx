@@ -5,5 +5,9 @@ interface PersonChipProps {
 }
 
 export function PersonChip({ name }: PersonChipProps) {
-  return <span className={styles.root}>{name}</span>;
+  return (
+    <span className={styles.root} title={name}>
+      {name}
+    </span>
+  );
 }

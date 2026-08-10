@@ -7,13 +7,13 @@ export function filterEventsByType(
   switch (filter) {
     case "actividades":
       return events.filter((event) => event.type === "actividad");
-    case "problemas_abiertos":
+    case "retos_abiertos":
       return events.filter(
-        (event) => event.type === "problema" && event.status === "abierto",
+        (event) => event.type === "reto" && event.status === "abierto",
       );
-    case "problemas_resueltos":
+    case "retos_resueltos":
       return events.filter(
-        (event) => event.type === "problema" && event.status === "resuelto",
+        (event) => event.type === "reto" && event.status === "resuelto",
       );
     case "todos":
     default:

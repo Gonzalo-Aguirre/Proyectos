@@ -1,19 +1,92 @@
+/* Actividad terminada: verde plano */
 .actividadTerminada {
+  border: 1px solid color-mix(in srgb, var(--border-actividad) 45%, var(--border));
   border-left: 4px solid var(--border-actividad);
+  background: color-mix(in srgb, var(--border-actividad) 14%, var(--bg-elevated));
 }
 
-.actividadEnProgreso {
-  border-left: 4px solid #0ea5e9;
-}
-
+/* Por iniciar: verde arriba → rojizo abajo */
 .actividadPorIniciar {
-  border-left: 4px solid #64748b;
+  border: 1px solid color-mix(in srgb, var(--border-actividad-alerta) 40%, var(--border));
+  border-top-color: color-mix(in srgb, var(--border-actividad) 55%, var(--border));
+  border-left: 4px solid var(--border-actividad);
+  border-bottom: 3px solid var(--border-actividad-alerta);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--border-actividad) 22%, var(--bg-elevated)) 0%,
+    color-mix(in srgb, var(--border-actividad) 10%, var(--bg-elevated)) 42%,
+    color-mix(in srgb, var(--border-actividad-alerta) 18%, var(--bg-elevated)) 100%
+  );
 }
 
-.problemaAbierto {
-  border-left: 4px solid var(--border-problema-abierto);
+/* En progreso: verde arriba → amarillo abajo */
+.actividadEnProgreso {
+  border: 1px solid color-mix(in srgb, var(--border-actividad-aviso) 40%, var(--border));
+  border-top-color: color-mix(in srgb, var(--border-actividad) 55%, var(--border));
+  border-left: 4px solid var(--border-actividad);
+  border-bottom: 3px solid var(--border-actividad-aviso);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--border-actividad) 22%, var(--bg-elevated)) 0%,
+    color-mix(in srgb, var(--border-actividad) 10%, var(--bg-elevated)) 42%,
+    color-mix(in srgb, var(--border-actividad-aviso) 20%, var(--bg-elevated)) 100%
+  );
 }
 
-.problemaResuelto {
-  border-left: 4px solid var(--border-problema-resuelto);
+/* Reto resuelto: celeste plano */
+.retoResuelto {
+  border: 1px solid color-mix(in srgb, var(--border-reto) 45%, var(--border));
+  border-left: 4px solid var(--border-reto);
+  background: color-mix(in srgb, var(--border-reto) 16%, var(--bg-elevated));
+}
+
+/* Reto abierto: celeste arriba → ámbar abajo */
+.retoAbierto {
+  border: 1px solid color-mix(in srgb, var(--border-reto-alerta) 42%, var(--border));
+  border-top-color: color-mix(in srgb, var(--border-reto) 55%, var(--border));
+  border-left: 4px solid var(--border-reto);
+  border-bottom: 3px solid var(--border-reto-alerta);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--border-reto) 24%, var(--bg-elevated)) 0%,
+    color-mix(in srgb, var(--border-reto) 10%, var(--bg-elevated)) 42%,
+    color-mix(in srgb, var(--border-reto-alerta) 22%, var(--bg-elevated)) 100%
+  );
+}
+
+@media (prefers-color-scheme: dark) {
+  .actividadTerminada {
+    background: color-mix(in srgb, var(--border-actividad) 20%, var(--bg-elevated));
+  }
+
+  .actividadPorIniciar {
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--border-actividad) 28%, var(--bg-elevated)) 0%,
+      color-mix(in srgb, var(--border-actividad) 12%, var(--bg-elevated)) 40%,
+      color-mix(in srgb, var(--border-actividad-alerta) 26%, var(--bg-elevated)) 100%
+    );
+  }
+
+  .actividadEnProgreso {
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--border-actividad) 28%, var(--bg-elevated)) 0%,
+      color-mix(in srgb, var(--border-actividad) 12%, var(--bg-elevated)) 40%,
+      color-mix(in srgb, var(--border-actividad-aviso) 24%, var(--bg-elevated)) 100%
+    );
+  }
+
+  .retoResuelto {
+    background: color-mix(in srgb, var(--border-reto) 22%, var(--bg-elevated));
+  }
+
+  .retoAbierto {
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--border-reto) 30%, var(--bg-elevated)) 0%,
+      color-mix(in srgb, var(--border-reto) 12%, var(--bg-elevated)) 40%,
+      color-mix(in srgb, var(--border-reto-alerta) 28%, var(--bg-elevated)) 100%
+    );
+  }
 }

@@ -5,8 +5,8 @@ import styles from "./FilterBar.module.css";
 const FILTERS: { id: TimelineFilter; label: string }[] = [
   { id: "todos", label: "Todos" },
   { id: "actividades", label: "Actividades" },
-  { id: "problemas_abiertos", label: "Problemas abiertos" },
-  { id: "problemas_resueltos", label: "Problemas resueltos" },
+  { id: "retos_abiertos", label: "Retos abiertos" },
+  { id: "retos_resueltos", label: "Retos resueltos" },
 ];
 
 interface FilterBarProps {

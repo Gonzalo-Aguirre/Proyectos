@@ -2,13 +2,16 @@
 
 import { useState } from "react";
 import { ActivityStatusSelector } from "@/features/activity-status/ActivityStatusSelector";
+import { ActivityRelationField } from "@/features/event-detail/ActivityRelationField";
 import { validateCreateEvent } from "@/lib/events/validate-event";
 import type { UserProfile } from "@/types/auth";
 import type {
   ActivityStatus,
   CreateEventInput,
+  EventPriority,
   EventType,
-  ProblemStatus,
+  RetoStatus,
+  TeamEvent,
 } from "@/types/event";
 import { DescriptionField } from "./fields/DescriptionField";
 import { ResolutionField } from "./fields/ResolutionField";
@@ -16,11 +19,13 @@ import { TagsInputField } from "./fields/TagsInputField";
 import { TitleField } from "./fields/TitleField";
 import { EventTypeSelector } from "./EventTypeSelector";
 import { StatusToggle } from "./StatusToggle";
+import { PrioritySelector } from "@/features/event-detail/PrioritySelector";
 import styles from "./EventForm.module.css";
 
 interface EventFormProps {
   environmentId: string;
   currentUser: UserProfile;
+  activities: TeamEvent[];
   onSubmit: (input: CreateEventInput) => Promise<void>;
   onCancel: () => void;
 }
@@ -28,6 +33,7 @@ interface EventFormProps {
 export function EventForm({
   environmentId,
   currentUser,
+  activities,
   onSubmit,
   onCancel,
 }: EventFormProps) {
@@ -37,9 +43,13 @@ export function EventForm({
   const [resolution, setResolution] = useState("");
   const [involved, setInvolved] = useState<string[]>([]);
   const [tags, setTags] = useState<string[]>([]);
+  const [relatedActivityId, setRelatedActivityId] = useState<string | null>(
+    null,
+  );
   const [activityStatus, setActivityStatus] =
     useState<ActivityStatus>("terminada");
-  const [problemStatus, setProblemStatus] = useState<ProblemStatus>("abierto");
+  const [retoStatus, setRetoStatus] = useState<RetoStatus>("abierto");
+  const [priority, setPriority] = useState<EventPriority>("media");
   const [errors, setErrors] = useState<{
     title?: string;
     description?: string;
@@ -52,6 +62,7 @@ export function EventForm({
     setType(next);
     if (next === "actividad") {
       setResolution("");
+      setRelatedActivityId(null);
     }
   };
 
@@ -68,8 +79,10 @@ export function EventForm({
       description,
       involved,
       tags,
-      resolution: type === "problema" ? resolution : null,
-      status: type === "problema" ? problemStatus : activityStatus,
+      resolution: type === "reto" ? resolution : null,
+      status: type === "reto" ? retoStatus : activityStatus,
+      priority,
+      related_activity_id: type === "reto" ? relatedActivityId : null,
     };
 
     const validation = validateCreateEvent(input);
@@ -101,6 +114,8 @@ export function EventForm({
         error={errors.description}
       />
 
+      <PrioritySelector value={priority} onChange={setPriority} />
+
       {type === "actividad" ? (
         <div className={styles.statusBlock}>
           <span className={styles.sectionLabel}>Estado de la actividad</span>
@@ -111,8 +126,13 @@ export function EventForm({
         </div>
       ) : (
         <>
+          <ActivityRelationField
+            activities={activities}
+            value={relatedActivityId}
+            onChange={setRelatedActivityId}
+          />
           <ResolutionField value={resolution} onChange={setResolution} />
-          <StatusToggle value={problemStatus} onChange={setProblemStatus} />
+          <StatusToggle value={retoStatus} onChange={setRetoStatus} />
         </>
       )}
 
@@ -127,7 +147,8 @@ export function EventForm({
           label="Etiquetas"
           values={tags}
           onChange={setTags}
-          placeholder="tag + Enter"
+          placeholder="#tema o web + Enter"
+          hint="Con # es etiqueta. Sin # se trata como link web."
         />
       </div>
 

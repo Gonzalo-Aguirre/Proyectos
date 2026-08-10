@@ -1,10 +1,11 @@
-.root {
-  width: min(760px, calc(100% - 2rem));
+.workspace {
+  width: min(1600px, calc(100% - 1rem));
   margin: 0 auto;
-  padding: 2rem 0 3rem;
+  padding: var(--space-4) 0 var(--space-6);
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: var(--space-3);
+  min-height: calc(100vh - 1rem);
 }
 
 .top {
@@ -17,21 +18,22 @@
 .title {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-size: clamp(1.4rem, 2.4vw, 1.85rem);
   letter-spacing: -0.02em;
 }
 
 .lead {
   margin: 0.35rem 0 0;
   color: var(--text-muted);
-  max-width: 42ch;
+  max-width: 56ch;
+  font-size: 0.9rem;
 }
 
 .userBox {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 0.35rem;
+  gap: 0.45rem;
 }
 
 .userName {
@@ -47,16 +49,58 @@
   font-size: 0.75rem;
 }
 
-.grid {
+.columns {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.75rem;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 30%);
+  gap: var(--space-3);
+  align-items: stretch;
+  flex: 1;
+  min-height: 0;
+  height: min(78vh, 860px);
 }
 
-@media (min-width: 640px) {
-  .grid {
-    grid-template-columns: 1fr 1fr;
-  }
+.gridPane,
+.panelPane {
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.gridPane {
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--bg-elevated) 70%, transparent);
+  padding: var(--space-2);
+  overflow: auto;
+}
+
+.panelPane {
+  display: flex;
+  flex-direction: column;
+}
+
+.panelPane > * {
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: var(--space-2);
+  align-items: stretch;
+}
+
+.cell {
+  min-width: 0;
+  display: flex;
+}
+
+.cell > * {
+  flex: 1;
+  min-height: 150px;
 }
 
 .empty {
@@ -67,8 +111,201 @@
   text-align: center;
 }
 
-.footer {
+.status {
+  margin: var(--space-3);
+  color: var(--text-muted);
+}
+
+.panelHint {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.createBtn {
+  border: none;
+  background: var(--color-accent);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  padding: 0.55rem 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 650;
+}
+
+.panelFooter {
   display: flex;
   justify-content: flex-end;
-  margin-top: 0.5rem;
+  margin-top: auto;
+}
+
+.envEdit {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.envEditHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.envEditTitle {
+  margin: 0;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+.envEditBtn {
+  border: 1px solid var(--border);
+  background: var(--bg-muted);
+  border-radius: var(--radius-sm);
+  padding: 0.2rem 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.envEditForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg-muted);
+}
+
+.envLabel {
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.envInput,
+.envTextarea {
+  border: 1px solid var(--border);
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  padding: 0.4rem 0.55rem;
+  font-size: 0.88rem;
+  color: var(--text);
+}
+
+.envTextarea {
+  resize: vertical;
+  min-height: 64px;
+}
+
+.envActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}
+
+.envCancel {
+  border: 1px solid var(--border);
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  padding: 0.3rem 0.55rem;
+  font-size: 0.75rem;
+}
+
+.envSave {
+  border: none;
+  background: var(--color-accent);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  padding: 0.3rem 0.55rem;
+  font-size: 0.75rem;
+  font-weight: 650;
+}
+
+.envError {
+  margin: 0;
+  color: #b91c1c;
+  font-size: 0.78rem;
+}
+
+.invitesBanner {
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--color-accent) 10%, var(--bg-elevated));
+  border-radius: var(--radius-md);
+  padding: 0.75rem 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.invitesTitle {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 650;
+}
+
+.invitesList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.inviteRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.82rem;
+}
+
+.acceptBtn {
+  border: none;
+  background: var(--color-accent);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  padding: 0.3rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 650;
+  flex-shrink: 0;
+}
+
+.acceptBtn:disabled {
+  opacity: 0.55;
+}
+
+@media (max-width: 960px) {
+  .columns {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(280px, 1fr) minmax(280px, 42vh);
+    height: auto;
+    min-height: 70vh;
+  }
+
+  .gridPane,
+  .panelPane {
+    height: auto;
+    min-height: 280px;
+  }
+
+  .panelPane {
+    order: 2;
+  }
+
+  .gridPane {
+    order: 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .workspace {
+    width: calc(100% - 0.75rem);
+  }
+
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
 }

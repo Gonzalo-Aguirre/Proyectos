@@ -15,16 +15,16 @@ export function EventTypeSelector({ value, onChange }: EventTypeSelectorProps) {
         onClick={() => onChange("actividad")}
         aria-pressed={value === "actividad"}
       >
-        <span className={styles.label}>Actividad realizada</span>
+        <span className={styles.label}>Actividad</span>
         <span className={styles.hint}>Trabajo hecho, deploy, avance</span>
       </button>
       <button
         type="button"
-        className={`${styles.option} ${value === "problema" ? styles.optionActive : ""}`}
-        onClick={() => onChange("problema")}
-        aria-pressed={value === "problema"}
+        className={`${styles.option} ${value === "reto" ? styles.optionActive : ""}`}
+        onClick={() => onChange("reto")}
+        aria-pressed={value === "reto"}
       >
-        <span className={styles.label}>Problema / Incidente</span>
+        <span className={styles.label}>Reto</span>
         <span className={styles.hint}>Con estado y resolución</span>
       </button>
     </div>

@@ -1,9 +1,9 @@
-import type { ProblemStatus } from "@/types/event";
+import type { RetoStatus } from "@/types/event";
 import styles from "./StatusToggle.module.css";
 
 interface StatusToggleProps {
-  value: ProblemStatus;
-  onChange: (value: ProblemStatus) => void;
+  value: RetoStatus;
+  onChange: (value: RetoStatus) => void;
 }
 
 export function StatusToggle({ value, onChange }: StatusToggleProps) {

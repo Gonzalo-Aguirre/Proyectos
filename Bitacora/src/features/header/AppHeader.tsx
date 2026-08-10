@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ThemeSelector } from "@/features/theme/ThemeSelector";
 import { AppSubtitle } from "./AppSubtitle";
 import { AppTitle } from "./AppTitle";
 import styles from "./AppHeader.module.css";
@@ -23,11 +24,14 @@ export function AppHeader({
             <AppSubtitle />
           )}
         </div>
-        {showBackToEnvironments ? (
-          <Link href="/entornos" className={styles.backLink}>
-            Entornos
-          </Link>
-        ) : null}
+        <div className={styles.actions}>
+          <ThemeSelector />
+          {showBackToEnvironments ? (
+            <Link href="/entornos" className={styles.backLink}>
+              Entornos
+            </Link>
+          ) : null}
+        </div>
       </div>
     </header>
   );

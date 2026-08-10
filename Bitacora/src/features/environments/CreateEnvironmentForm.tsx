@@ -39,9 +39,16 @@ export function CreateEnvironmentForm({
       setName("");
       setDescription("");
     } catch (err) {
-      setError(
-        err instanceof Error ? err.message : "No se pudo crear el entorno.",
-      );
+      const message =
+        err instanceof Error
+          ? err.message
+          : typeof err === "object" &&
+              err !== null &&
+              "message" in err &&
+              typeof (err as { message: unknown }).message === "string"
+            ? (err as { message: string }).message
+            : "No se pudo crear el entorno.";
+      setError(message);
     } finally {
       setBusy(false);
     }

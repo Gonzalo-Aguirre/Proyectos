@@ -7,6 +7,6 @@ export function getEventBorderClass(event: TeamEvent): string {
     if (event.status === "en_progreso") return styles.actividadEnProgreso;
     return styles.actividadTerminada;
   }
-  if (event.status === "resuelto") return styles.problemaResuelto;
-  return styles.problemaAbierto;
+  if (event.status === "resuelto") return styles.retoResuelto;
+  return styles.retoAbierto;
 }

@@ -31,7 +31,7 @@ export function EventStatusChangeForm({
     }
 
     if (status === "resuelto" && !resolution.trim() && !event.resolution) {
-      setError("Indicá cómo se resolvió el problema.");
+      setError("Indicá cómo se resolvió el reto.");
       return;
     }
 
@@ -86,7 +86,7 @@ export function EventStatusChangeForm({
               disabled={submitting}
               onClick={() => void submit("abierto")}
             >
-              {submitting ? "Guardando…" : "Reabrir problema"}
+              {submitting ? "Guardando…" : "Reabrir reto"}
             </button>
           </div>
         </>
