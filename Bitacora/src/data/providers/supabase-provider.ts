@@ -8,6 +8,7 @@ import type {
   UpdateEnvironmentInput,
   WorkEnvironment,
 } from "@/types/environment";
+import { resolveBitacoraTitle } from "@/types/environment";
 import type {
   CreateEventInput,
   CreateEventItemInput,
@@ -226,6 +227,7 @@ export function createSupabaseEnvironmentProvider(): EnvironmentRepository {
       if (!info?.myRole) continue;
       enriched.push({
         ...env,
+        bitacora_title: resolveBitacoraTitle(env.bitacora_title),
         my_role: info.myRole,
         is_shared: info.count > 1,
       });
@@ -264,6 +266,7 @@ export function createSupabaseEnvironmentProvider(): EnvironmentRepository {
         .insert({
           name: input.name.trim(),
           description: input.description?.trim() || "",
+          bitacora_title: resolveBitacoraTitle(input.bitacora_title),
           created_by: input.created_by,
           created_by_user_id: input.created_by_user_id ?? null,
         })
@@ -295,6 +298,7 @@ export function createSupabaseEnvironmentProvider(): EnvironmentRepository {
 
       return {
         ...created,
+        bitacora_title: resolveBitacoraTitle(created.bitacora_title),
         my_role: "owner" as const,
         is_shared: false,
       };
@@ -306,6 +310,9 @@ export function createSupabaseEnvironmentProvider(): EnvironmentRepository {
       if (input.description !== undefined) {
         payload.description = input.description.trim();
       }
+      if (input.bitacora_title !== undefined) {
+        payload.bitacora_title = resolveBitacoraTitle(input.bitacora_title);
+      }
       const { data, error } = await supabase
         .from("environments")
         .update(payload)
@@ -313,7 +320,11 @@ export function createSupabaseEnvironmentProvider(): EnvironmentRepository {
         .select("*")
         .single();
       if (error) throw error;
-      return data as WorkEnvironment;
+      const updated = data as WorkEnvironment;
+      return {
+        ...updated,
+        bitacora_title: resolveBitacoraTitle(updated.bitacora_title),
+      };
     },
 
     async remove(id) {

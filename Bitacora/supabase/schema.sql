@@ -18,6 +18,7 @@ create table if not exists environments (
   created_at timestamp with time zone default timezone('utc'::text, now()) not null,
   name text not null,
   description text default '' not null,
+  bitacora_title text default 'Bitácora del Equipo' not null,
   created_by text not null,
   created_by_user_id uuid references profiles (id) on delete set null
 );
@@ -224,10 +225,12 @@ create policy "environments insert authenticated" on environments
   for insert to authenticated
   with check (auth.uid() = created_by_user_id);
 
-create policy "environments update owner" on environments
+drop policy if exists "environments update owner" on environments;
+drop policy if exists "environments update member editor" on environments;
+create policy "environments update member editor" on environments
   for update to authenticated
-  using (public.environment_member_role(id) = 'owner')
-  with check (public.environment_member_role(id) = 'owner');
+  using (public.environment_member_role(id) in ('owner', 'editor'))
+  with check (public.environment_member_role(id) in ('owner', 'editor'));
 
 create policy "environments delete owner" on environments
   for delete to authenticated

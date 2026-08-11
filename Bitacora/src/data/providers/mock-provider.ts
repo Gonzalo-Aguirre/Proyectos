@@ -8,6 +8,7 @@ import type {
   UpdateEnvironmentInput,
   WorkEnvironment,
 } from "@/types/environment";
+import { resolveBitacoraTitle } from "@/types/environment";
 import type {
   CreateEventInput,
   CreateEventItemInput,
@@ -252,6 +253,7 @@ export function createMockEnvironmentProvider(): EnvironmentRepository {
     if (!mine) return null;
     return {
       ...env,
+      bitacora_title: resolveBitacoraTitle(env.bitacora_title),
       my_role: mine.role,
       is_shared: members.length > 1,
     };
@@ -301,6 +303,7 @@ export function createMockEnvironmentProvider(): EnvironmentRepository {
         created_at: new Date().toISOString(),
         name: input.name.trim(),
         description: input.description?.trim() || "",
+        bitacora_title: resolveBitacoraTitle(input.bitacora_title),
         created_by: input.created_by,
         created_by_user_id: input.created_by_user_id ?? null,
         my_role: "owner",
@@ -333,6 +336,10 @@ export function createMockEnvironmentProvider(): EnvironmentRepository {
           input.description === undefined
             ? current.description
             : input.description.trim(),
+        bitacora_title:
+          input.bitacora_title === undefined
+            ? resolveBitacoraTitle(current.bitacora_title)
+            : resolveBitacoraTitle(input.bitacora_title),
       };
       const next = [...items];
       next[index] = updated;

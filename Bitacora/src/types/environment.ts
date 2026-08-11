@@ -2,10 +2,14 @@ export type MemberRole = "owner" | "editor" | "viewer";
 
 export type InviteStatus = "pending" | "accepted" | "revoked";
 
+export const DEFAULT_BITACORA_TITLE = "Bitácora del Equipo";
+
 export interface WorkEnvironment {
   id: string;
   name: string;
   description: string;
+  /** Título de la bitácora en el header (editable). */
+  bitacora_title: string;
   created_by: string;
   created_by_user_id: string | null;
   created_at: string;
@@ -18,6 +22,7 @@ export interface WorkEnvironment {
 export interface CreateEnvironmentInput {
   name: string;
   description?: string;
+  bitacora_title?: string;
   created_by: string;
   created_by_user_id?: string | null;
 }
@@ -25,6 +30,7 @@ export interface CreateEnvironmentInput {
 export interface UpdateEnvironmentInput {
   name?: string;
   description?: string;
+  bitacora_title?: string;
 }
 
 export interface EnvironmentMember {
@@ -56,6 +62,13 @@ export interface CreateInviteInput {
   email: string;
   role: Exclude<MemberRole, "owner">;
   invited_by: string;
+}
+
+export function resolveBitacoraTitle(
+  title: string | null | undefined,
+): string {
+  const trimmed = title?.trim();
+  return trimmed || DEFAULT_BITACORA_TITLE;
 }
 
 export function canEditEnvironment(role: MemberRole | null | undefined): boolean {

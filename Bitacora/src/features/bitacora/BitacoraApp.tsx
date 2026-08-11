@@ -21,7 +21,10 @@ import { SidePanel } from "@/features/workspace/SidePanel";
 import { filterEventsByType } from "@/lib/events/filter-events";
 import { searchEvents } from "@/lib/events/search-events";
 import type { WorkEnvironment } from "@/types/environment";
-import { canEditEnvironment } from "@/types/environment";
+import {
+  canEditEnvironment,
+  resolveBitacoraTitle,
+} from "@/types/environment";
 import type {
   ActivityStatus,
   ChangeStatusInput,
@@ -271,6 +274,20 @@ export function BitacoraApp({ environmentId }: BitacoraAppProps) {
     await refresh();
   };
 
+  const handleSaveBitacoraTitle = async (title: string) => {
+    if (!environment) return;
+    const updated = await envRepo.update(environment.id, {
+      bitacora_title: title,
+    });
+    setEnvironment({
+      ...environment,
+      ...updated,
+      bitacora_title: title,
+      my_role: environment.my_role,
+      is_shared: environment.is_shared,
+    });
+  };
+
   const handleAddItem = async (body: string) => {
     if (!selected || !user) return;
 
@@ -301,6 +318,9 @@ export function BitacoraApp({ environmentId }: BitacoraAppProps) {
     <div className={styles.workspace}>
       <AppHeader
         environmentName={environment?.name}
+        bitacoraTitle={resolveBitacoraTitle(environment?.bitacora_title)}
+        canEditTitle={canEdit}
+        onSaveBitacoraTitle={handleSaveBitacoraTitle}
         showBackToEnvironments
       />
 

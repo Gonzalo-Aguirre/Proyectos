@@ -6,18 +6,28 @@ import styles from "./AppHeader.module.css";
 
 interface AppHeaderProps {
   environmentName?: string;
+  bitacoraTitle?: string;
+  canEditTitle?: boolean;
+  onSaveBitacoraTitle?: (title: string) => Promise<void> | void;
   showBackToEnvironments?: boolean;
 }
 
 export function AppHeader({
   environmentName,
+  bitacoraTitle,
+  canEditTitle = false,
+  onSaveBitacoraTitle,
   showBackToEnvironments = false,
 }: AppHeaderProps) {
   return (
     <header className={styles.root}>
       <div className={styles.topRow}>
         <div className={styles.copy}>
-          <AppTitle />
+          <AppTitle
+            title={bitacoraTitle}
+            editable={canEditTitle}
+            onSave={onSaveBitacoraTitle}
+          />
           {environmentName ? (
             <p className={styles.envName}>{environmentName}</p>
           ) : (
