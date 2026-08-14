@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { ThemeSelector } from "@/features/theme/ThemeSelector";
 import { AppSubtitle } from "./AppSubtitle";
 import { AppTitle } from "./AppTitle";
@@ -10,6 +11,8 @@ interface AppHeaderProps {
   canEditTitle?: boolean;
   onSaveBitacoraTitle?: (title: string) => Promise<void> | void;
   showBackToEnvironments?: boolean;
+  /** Acciones junto al nombre del entorno (ej. botón Reporte). */
+  environmentActions?: ReactNode;
 }
 
 export function AppHeader({
@@ -18,6 +21,7 @@ export function AppHeader({
   canEditTitle = false,
   onSaveBitacoraTitle,
   showBackToEnvironments = false,
+  environmentActions,
 }: AppHeaderProps) {
   return (
     <header className={styles.root}>
@@ -29,7 +33,10 @@ export function AppHeader({
             onSave={onSaveBitacoraTitle}
           />
           {environmentName ? (
-            <p className={styles.envName}>{environmentName}</p>
+            <div className={styles.envRow}>
+              <p className={styles.envName}>{environmentName}</p>
+              {environmentActions}
+            </div>
           ) : (
             <AppSubtitle />
           )}

@@ -13,6 +13,7 @@ import { EventForm } from "@/features/event-form/EventForm";
 import { EventFocusOverlay } from "@/features/event-grid/EventFocusOverlay";
 import { EventGrid } from "@/features/event-grid/EventGrid";
 import { CsvExportButton } from "@/features/export/CsvExportButton";
+import { ReportButton } from "@/features/export/ReportButton";
 import { FilterBar } from "@/features/filters/FilterBar";
 import { AppHeader } from "@/features/header/AppHeader";
 import { SearchBar } from "@/features/search/SearchBar";
@@ -322,6 +323,28 @@ export function BitacoraApp({ environmentId }: BitacoraAppProps) {
         canEditTitle={canEdit}
         onSaveBitacoraTitle={handleSaveBitacoraTitle}
         showBackToEnvironments
+        environmentActions={
+          environment ? (
+            <ReportButton
+              environmentName={environment.name}
+              bitacoraTitle={environment.bitacora_title}
+              visibleEvents={visibleEvents}
+              allEvents={events}
+              filter={filter}
+              query={query}
+              loadItemsByEvent={async (eventIds) => {
+                const items = await itemsRepo.listByEvents(eventIds);
+                const map = new Map<string, EventItem[]>();
+                for (const item of items) {
+                  const list = map.get(item.event_id) ?? [];
+                  list.push(item);
+                  map.set(item.event_id, list);
+                }
+                return map;
+              }}
+            />
+          ) : null
+        }
       />
 
       <div className={styles.columns}>

@@ -23,6 +23,13 @@
   font-size: 0.95rem;
 }
 
+.envRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
 .actions {
   display: flex;
   align-items: center;

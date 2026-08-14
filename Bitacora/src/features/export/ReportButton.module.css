@@ -1,0 +1,35 @@
+.wrap {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+}
+
+.root {
+  border: 1px solid var(--border);
+  background: var(--bg-muted);
+  color: var(--text-muted);
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+}
+
+.root:hover:not(:disabled) {
+  color: var(--text);
+  border-color: var(--color-accent);
+  background: var(--bg-elevated);
+}
+
+.root:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.error {
+  font-size: 0.65rem;
+  color: var(--color-danger, #b91c1c);
+  max-width: 14rem;
+}
